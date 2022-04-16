@@ -1,6 +1,8 @@
 package com.juker_enterprise.cantiquebulu;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -29,5 +31,12 @@ public class Splash  extends AppCompatActivity {
 
         img1.setAnimation(top);
         img2.setAnimation(bottom);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        }, 5000);
     }
 }
