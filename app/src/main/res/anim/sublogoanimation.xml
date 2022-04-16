@@ -9,5 +9,4 @@
         android:toAlpha="1.0"
         android:duration="2000"/>
 
-
 </set>
