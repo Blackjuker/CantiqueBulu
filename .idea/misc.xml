@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Temi/AndroidStudioProjects/CantiqueBulu/app/src/main/res/drawable/black_white_gradient.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/Temi/AndroidStudioProjects/CantiqueBulu/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/Temi/AndroidStudioProjects/CantiqueBulu/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/Temi/AndroidStudioProjects/CantiqueBulu/app/src/main/res/layout/splash.xml" value="0.15" />
+        <entry key="..\:/Users/Temi/AndroidStudioProjects/CantiqueBulu/app/src/main/res/menu/bottom_navigation.xml" value="0.14270833333333333" />
       </map>
     </option>
   </component>
