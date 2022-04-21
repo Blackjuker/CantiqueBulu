@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+        app:strokeColor="#D5A10F"
+        app:strokeWidth="1dp"
         android:layout_centerHorizontal="true"
-        android:text="My Information"
-        android:textSize="35sp"
-        />
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/ic_launcher"/>
 </RelativeLayout>
