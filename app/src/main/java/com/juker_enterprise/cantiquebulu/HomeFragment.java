@@ -42,7 +42,6 @@ public class HomeFragment extends Fragment {
                 resId = getResources().getIdentifier("raw/b"+i,null,context.getPackageName());
             }
             cantique = new Cantique();
-
             cantique.setNumero(resId);
             cantique.setCorps(getCorps(resId));
             cantique.setTitre(titre);
