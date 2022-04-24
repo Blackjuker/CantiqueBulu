@@ -7,11 +7,12 @@
 
     <TextView
         android:id="@+id/textView"
+        android:alpha="0.6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="2dp"
         android:fontFamily="@font/almendra_sc"
         android:text="@string/cantique_bulu"
         android:textSize="35sp"
@@ -21,42 +22,30 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        app:srcCompat="@drawable/logo"
+        android:alpha="0.1"
         android:layout_width="179dp"
         android:layout_height="136dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="35dp"
+        android:contentDescription="@string/logo_de_fond"
+        app:srcCompat="@drawable/logo" />
+<androidx.appcompat.widget.SearchView
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/searchListe"
+    app:iconifiedByDefault="false"
+    app:queryHint="Recherche ton cantique"/>
 
-    <RelativeLayout
-        android:id="@+id/subMenu"
+    <ListView
+        android:id="@+id/listCantique"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="center_horizontal">
-
-        <ImageButton
-            android:id="@+id/list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_launcher_background" />
-
-        <ImageButton
-            android:id="@+id/favoris"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:layout_toRightOf="@id/list"
-            android:background="@drawable/ic_launcher_background" />
-    </RelativeLayout>
-
-    <ImageButton
-        android:id="@+id/apropos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/subMenu"
-        android:layout_centerHorizontal="true"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchListe"
         android:layout_marginTop="20dp"
-        android:background="@drawable/ic_launcher_background" />
+        android:layout_above="@id/textView"
+        />
+
 </RelativeLayout>
