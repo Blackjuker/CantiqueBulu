@@ -3,7 +3,10 @@ plugins {
 }
 
 android {
+    compileOptions.encoding "ISO-8859-1"
     compileSdk 31
+
+
 
     defaultConfig {
         applicationId "com.juker_enterprise.cantiquebulu"

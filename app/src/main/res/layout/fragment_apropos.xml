@@ -9,7 +9,7 @@
         android:layout_height="103dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/potrait"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
         app:strokeColor="#D5A10F"
         app:strokeWidth="1dp" />

@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_favoris:
                             selectedFragment = new FavorisFragment();
                             break;
-                        case R.id.nav_search:
-                            selectedFragment = new SearchFragment();
-                            break;
                         case R.id.nav_apropos:
                             selectedFragment = new InformationFragment();
                             break;

@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener  {
@@ -77,7 +78,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
                 cantique.setNumero(resId);
                 cantique.setCorps(getCorps(resId));
-                cantique.setTitre(titre);
+               // String t = ;
+                byte[] caractereSpecia = titre.getBytes(StandardCharsets.ISO_8859_1);
+                String TitreCantique = new String(caractereSpecia);
+               // Toast.makeText(mContext, TitreCantique, Toast.LENGTH_SHORT).show();
+                cantique.setTitre(TitreCantique);
 
 
                 listCantique.add(cantique);
