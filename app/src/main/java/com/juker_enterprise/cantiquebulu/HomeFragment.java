@@ -1,11 +1,15 @@
 package com.juker_enterprise.cantiquebulu;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,7 +24,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener  {
 
     Cantique cantique ;
     ArrayList <Cantique> listCantique = null;
@@ -37,34 +41,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-          int resId ;
-        listCantique = new ArrayList();
 
-       try {
-           for (int i=1;i<=296;i++){
-               if(i<10){
-                   resId = getResources().getIdentifier("raw/b00"+String.valueOf(i),"raw",mContext.getPackageName());
-               }else if(i<100){
-                   resId = getResources().getIdentifier("raw/b0"+i,"raw",mContext.getPackageName());
-               }else{
-                   resId = getResources().getIdentifier("raw/b"+i,"raw",mContext.getPackageName());
-               }
-              // context.getResources().openRawResource(resId);
-               cantique = new Cantique();
-               cantique.setNumero(resId);
-               cantique.setCorps(getCorps(resId));
-               cantique.setTitre(titre);
-
-
-               listCantique.add(cantique);
-               titre = null;
-
-           }
-       }catch (Exception e){
-           Log.d("erreur2",e.getMessage());
-       }
-
-        Log.d("valeur2",String .valueOf(listCantique.get(295).getTitre()));
     }
 
     @Nullable
@@ -77,6 +54,51 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        int resId ;
+        listCantique = new ArrayList();
+
+        try {
+            for (int i=1;i<=296;i++){
+                cantique = new Cantique();
+                if(i<10){
+                    resId = getResources().getIdentifier("raw/b00"+String.valueOf(i),"raw",mContext.getPackageName());
+                    cantique.setNumeroTitre("00"+i);
+                }else if(i<100){
+                    resId = getResources().getIdentifier("raw/b0"+i,"raw",mContext.getPackageName());
+                    cantique.setNumeroTitre("0"+i);
+                }else{
+                    resId = getResources().getIdentifier("raw/b"+i,"raw",mContext.getPackageName());
+                    cantique.setNumeroTitre(String.valueOf(i));
+                }
+                // context.getResources().openRawResource(resId);
+
+                cantique.setNumero(resId);
+                cantique.setCorps(getCorps(resId));
+                cantique.setTitre(titre);
+
+
+                listCantique.add(cantique);
+                titre = null;
+
+            }
+        }catch (Exception e){
+            Log.d("erreur2",e.getMessage());
+        }
+
+        String[] titreCantique = new String[296];
+        int i=0;
+        for(Cantique can : listCantique) {
+            titreCantique[i] = can.getNumeroTitre() + " : " + can.getTitre();
+            i++;
+        }
+        ListView listView =(ListView) view.findViewById(R.id.listCantique);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext,android.R.layout.simple_list_item_1,titreCantique);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+    }
 
     private String getCorps(int rawRessource){
         String corpCantique = null;
@@ -114,4 +136,10 @@ public class HomeFragment extends Fragment {
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      /*  if (postion==0){
+            Toast.makeText(mContext,"sorry").
+        }*/
+    }
 }

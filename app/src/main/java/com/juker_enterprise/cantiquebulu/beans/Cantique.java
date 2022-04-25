@@ -3,6 +3,16 @@ package com.juker_enterprise.cantiquebulu.beans;
 public class Cantique {
 
     private int numero;
+    private String numeroTitre;
+
+    public String getNumeroTitre() {
+        return numeroTitre;
+    }
+
+    public void setNumeroTitre(String numeroTitre) {
+        this.numeroTitre = numeroTitre;
+    }
+
     private String titre;
     private String corps;
 
