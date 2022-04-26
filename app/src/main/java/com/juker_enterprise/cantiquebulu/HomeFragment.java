@@ -136,15 +136,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             Toast.makeText(mContext , "FileNotFoundException", Toast.LENGTH_LONG).show();
             corpCantique = "FileNotFoundException " + e.getMessage();
         }
-
+int a[] = new int[10];
+        a[0] = 2;
         return corpCantique;
     }
 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      /*  if (postion==0){
-            Toast.makeText(mContext,"sorry").
-        }*/
+        Toast.makeText(mContext, " "+position, Toast.LENGTH_SHORT).show();
     }
 }
