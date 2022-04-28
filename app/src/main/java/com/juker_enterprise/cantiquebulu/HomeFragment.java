@@ -79,10 +79,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 cantique.setNumero(resId);
                 cantique.setCorps(getCorps(resId));
                // String t = ;
-                byte[] caractereSpecia = titre.getBytes(StandardCharsets.ISO_8859_1);
-                String TitreCantique = new String(caractereSpecia);
+              //  byte[] caractereSpecia = titre.getBytes("Cp1252");
+               // String TitreCantique = new String(caractereSpecia);
                // Toast.makeText(mContext, TitreCantique, Toast.LENGTH_SHORT).show();
-                cantique.setTitre(TitreCantique);
+                cantique.setTitre(titre);
 
 
                 listCantique.add(cantique);
@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         try {
             if (inputStream != null) {
                 // open a reader on the inputStream
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,"Cp1252"));
 
                 // String used to store the lines
                 String str;
