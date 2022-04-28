@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.juker_enterprise.cantiquebulu.beans.Cantique;
 
@@ -58,6 +59,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         int resId ;
         listCantique = new ArrayList();
 
@@ -105,7 +107,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         listView.setOnItemClickListener(this);
     }
 
-    private String getCorps(int rawRessource){
+    private  String getCorps(int rawRessource){
         String corpCantique = null;
         // Read the file :open a InputStream on it
         InputStream inputStream = getResources().openRawResource(rawRessource);
@@ -136,14 +138,26 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             Toast.makeText(mContext , "FileNotFoundException", Toast.LENGTH_LONG).show();
             corpCantique = "FileNotFoundException " + e.getMessage();
         }
-int a[] = new int[10];
-        a[0] = 2;
+
         return corpCantique;
     }
 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(mContext, " "+position, Toast.LENGTH_SHORT).show();
+
+
+
+
+        FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
+        Fragment cantiqueBody = new MainPageFragment();
+        Bundle args = new Bundle();
+        args.putString("param1",String.valueOf(position+1));
+        args.putString("param2","");
+        cantiqueBody.setArguments(args);
+
+        fragmentTransaction.replace(R.id.fragment_container,cantiqueBody);
+        fragmentTransaction.commit();
+
     }
 }
