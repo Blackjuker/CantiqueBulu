@@ -1,6 +1,7 @@
 package com.juker_enterprise.cantiquebulu;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,10 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.juker_enterprise.cantiquebulu.beans.Cantique;
+import com.juker_enterprise.cantiquebulu.sqlDataBase.MyDataBaseHelper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,11 +37,13 @@ public class MainPageFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-    private String mParam2;
+    private int mParam2;
     Context mContext;
     Cantique cantique ;
     String titre=null;
     TextView body;
+    ImageButton btnFavoris;
+    MyDataBaseHelper myDB;
 
     public MainPageFragment() {
         // Required empty public constructor
@@ -76,7 +81,7 @@ public class MainPageFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam2 = getArguments().getInt(ARG_PARAM2);
         }
 
 
@@ -88,12 +93,50 @@ public class MainPageFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_main_page,container,false);
+
+
          body = view.findViewById(R.id.bodyCantique);
+         btnFavoris = view.findViewById(R.id.btn_favoris);
+
+
         if (mParam1==null)
             mParam1="";
         String param = mParam1;
 
         body.setText(openNextCantique(param).getCorps());
+
+
+        myDB = new MyDataBaseHelper(mContext);
+        if(!myDB.verifIfExist(cantique)) {
+
+            //   Drawable replacer = getResources().getDrawable(R.drawable.favoris_on);
+            btnFavoris.setImageResource(R.drawable.favoris_off);
+            // btnFavoris.setImageDrawable(Drawable.);
+        }else {
+            btnFavoris.setImageResource(R.drawable.favoris_on);
+        }
+
+
+        /** creer le bouton pour vérifier si l'objet a un favoris ou pas**/
+
+        btnFavoris.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Insertion dans la BD
+                myDB = new MyDataBaseHelper(mContext);
+
+                if(!myDB.verifIfExist(cantique)) {
+                    myDB.addFavoris(cantique);
+                 //   Drawable replacer = getResources().getDrawable(R.drawable.favoris_on);
+                    btnFavoris.setImageResource(R.drawable.favoris_on);
+                   // btnFavoris.setImageDrawable(Drawable.);
+                }else {
+                    Toast.makeText(mContext, "Déjà dans les favoris", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
      //   Toast.makeText(mContext, mParam1, Toast.LENGTH_SHORT).show();
         //Toast.makeText(getContext(), mParam1, Toast.LENGTH_SHORT).show();
 
