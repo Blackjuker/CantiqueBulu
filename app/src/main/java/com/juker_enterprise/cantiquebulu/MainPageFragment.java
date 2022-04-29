@@ -104,21 +104,27 @@ public class MainPageFragment extends Fragment {
 
     private Cantique openNextCantique(String nom){
         String name;
+        String n ="";
         cantique = new Cantique();
+
+
         int resId ;
         try {
         switch (nom.length()){
             case 1:
                 resId = getResources().getIdentifier("raw/b00"+nom,"raw",mContext.getPackageName());
                cantique.setNumeroTitre("00"+nom);
+               n ="00"+nom;
                 break;
             case 2:
-                resId = getResources().getIdentifier("raw/b00"+nom,"raw",mContext.getPackageName());
+                resId = getResources().getIdentifier("raw/b0"+nom,"raw",mContext.getPackageName());
                 cantique.setNumeroTitre("0"+nom);
+                n ="0"+nom;
                 break;
             case 3:
-                resId = getResources().getIdentifier("raw/b00"+nom,"raw",mContext.getPackageName());
+                resId = getResources().getIdentifier("raw/b"+nom,"raw",mContext.getPackageName());
                 cantique.setNumeroTitre(nom);
+                n =nom;
                 break;
             default:
                 resId =0;
@@ -161,10 +167,14 @@ public class MainPageFragment extends Fragment {
                 // Read the file
                 int i =0;
                 while ((str = reader.readLine()) != null) {
-                    buf.append(str).append("\r\n");
+
                     if (i==1)
                         titre = str;
-                    i++;
+                        i++;
+
+                        buf.append(str).append("\r\n");
+
+
                 }
 
                 // Close streams
