@@ -5,6 +5,35 @@
     android:layout_height="match_parent"
     tools:context=".MainPageFragment"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="3dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/predCantique"
+            android:src="@drawable/back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/btnFavoris"
+            android:src="@drawable/favoris_off"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:src="@drawable/next"
+            android:id="@+id/nextCantique"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
