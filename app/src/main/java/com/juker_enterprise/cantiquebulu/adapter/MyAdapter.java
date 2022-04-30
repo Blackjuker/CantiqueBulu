@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.juker_enterprise.cantiquebulu.R;
 import com.juker_enterprise.cantiquebulu.beans.Cantique;
 import com.juker_enterprise.cantiquebulu.beans.Favoris;
+import com.juker_enterprise.cantiquebulu.sqlDataBase.MyDataBaseHelper;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context context;
     List<Favoris> listFavoris;
 
+    MyDataBaseHelper myDB;
 
 
     public MyAdapter(Context ct, List<Favoris> list){
@@ -47,6 +49,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.txtNumeroCantique.setText(listFavoris.get(position).getNumero());
         holder.txtTitreCantique.setText(listFavoris.get(position).getNom());
+
+        holder.btnDeleteCantique.setOnClickListener(v -> {
+            myDB = new MyDataBaseHelper(context);
+            String numeroString ;
+            if(holder.txtNumeroCantique.length()<2){
+                numeroString ="00"+listFavoris.get(position).getNumero();
+            }else if (holder.txtNumeroCantique.length()<3){
+                numeroString ="0"+listFavoris.get(position).getNumero();
+            }else{
+                numeroString = listFavoris.get(position).getNumero();
+            }
+
+            myDB.deleteFavorisItem(numeroString);
+        });
     }
 
     @Override

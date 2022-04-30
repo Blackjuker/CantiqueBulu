@@ -114,4 +114,13 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
 
         return result;
     }
+
+    public void deleteFavorisItem(String num){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query =
+                "DELETE FROM  " + TABLE_NAME+
+                        "WHERE "+COLUMN_NUMERO+" = "+num;
+        db.delete(TABLE_NAME,COLUMN_NUMERO+"="+num,null);
+        Toast.makeText(context, "Cantique "+num+" Deleted", Toast.LENGTH_SHORT).show();
+    }
 }
