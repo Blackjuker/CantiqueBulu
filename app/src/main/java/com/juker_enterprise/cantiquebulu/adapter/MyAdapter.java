@@ -28,11 +28,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     MyDataBaseHelper myDB;
 
 
+
     public MyAdapter(Context ct, List<Favoris> list){
         context = ct;
         listFavoris = list;
         Log.e("sss", String.valueOf(list.size()));
     }
+
+
+
+
 
     @NonNull
     @Override
@@ -42,7 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         View view = inflater.inflate(R.layout.list_favoris_item,parent,false);
 
 
-        return new MyViewHolder(view);
+        return new MyViewHolder(view).linkAdapter(this);
     }
 
     @Override
@@ -61,7 +66,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 numeroString = listFavoris.get(position).getNumero();
             }
 
+
             myDB.deleteFavorisItem(numeroString);
+            listFavoris.remove(position);
+            holder.adapter.notifyDataSetChanged();
+            //notifyDataSetChanged();
         });
     }
 
@@ -75,6 +84,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         TextView txtNumeroCantique,txtTitreCantique;
         ImageView btnDeleteCantique;
+        private MyAdapter adapter;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +92,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             txtNumeroCantique = itemView.findViewById(R.id.numeroCantique);
             txtTitreCantique = itemView.findViewById(R.id.titreCantique);
             btnDeleteCantique = itemView.findViewById(R.id.btnDelete);
+
+
+        }
+
+        public MyViewHolder linkAdapter(MyAdapter adapter){
+            this.adapter = adapter;
+            return this;
         }
     }
 }

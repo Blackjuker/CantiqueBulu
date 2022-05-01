@@ -27,6 +27,7 @@ public class FavorisFragment extends Fragment {
     MyDataBaseHelper myDB;
     List<Favoris> listFavoris = null;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,7 +47,6 @@ public class FavorisFragment extends Fragment {
         MyAdapter myAdapter = new MyAdapter(mContext,listFavoris);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-
 
         return view;
     }
