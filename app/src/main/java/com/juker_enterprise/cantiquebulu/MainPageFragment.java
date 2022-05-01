@@ -118,6 +118,7 @@ public class MainPageFragment extends Fragment {
            if (numeroC<=296){
                Cantique cantique = new Cantique();
                cantique = openNextCantique(String.valueOf(numeroC));
+               verifFavoris(cantique);
                body.setText(cantique.getCorps());
                cantiqueNumero = String.valueOf(numeroC);
            }else{
@@ -130,8 +131,9 @@ public class MainPageFragment extends Fragment {
            numeroC = Integer.valueOf(cantiqueNumero)-1;
            Log.d("posi", String.valueOf(numeroC));
            if (numeroC>0){
-               Cantique cantique = new Cantique();
+               cantique = new Cantique();
                cantique = openNextCantique(String.valueOf(numeroC));
+               verifFavoris(cantique);
                body.setText(cantique.getCorps());
                cantiqueNumero = String.valueOf(numeroC);
            }else{
@@ -139,6 +141,9 @@ public class MainPageFragment extends Fragment {
            }
        });
 
+
+
+       //Verifie si elle est dans les favoris ou pas
         myDB = new MyDataBaseHelper(mContext);
         if(!myDB.verifIfExist(cantique)) {
 
@@ -177,6 +182,17 @@ public class MainPageFragment extends Fragment {
         return view;
     }
 
+    private void verifFavoris(Cantique cantique){
+        myDB = new MyDataBaseHelper(mContext);
+        if(!myDB.verifIfExist(cantique)) {
+
+            //   Drawable replacer = getResources().getDrawable(R.drawable.favoris_on);
+            btnFavoris.setImageResource(R.drawable.favoris_off);
+            // btnFavoris.setImageDrawable(Drawable.);
+        }else {
+            btnFavoris.setImageResource(R.drawable.favoris_on);
+        }
+    }
 
     private Cantique openNextCantique(String nom){
         String name;
