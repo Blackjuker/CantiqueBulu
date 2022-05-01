@@ -42,8 +42,9 @@ public class MainPageFragment extends Fragment {
     Cantique cantique ;
     String titre=null;
     TextView body;
-    ImageButton btnFavoris;
+    ImageButton btnFavoris,btnPred,btnNext;
     MyDataBaseHelper myDB;
+    String cantiqueNumero;
 
     public MainPageFragment() {
         // Required empty public constructor
@@ -97,14 +98,46 @@ public class MainPageFragment extends Fragment {
 
          body = view.findViewById(R.id.bodyCantique);
          btnFavoris = view.findViewById(R.id.btn_favoris);
+         btnNext = view.findViewById(R.id.nextCantique);
+         btnPred = view.findViewById(R.id.predCantique);
 
 
         if (mParam1==null)
             mParam1="";
         String param = mParam1;
-
+        cantiqueNumero = mParam1;
         body.setText(openNextCantique(param).getCorps());
 
+        
+        
+       btnNext.setOnClickListener(v -> {
+
+           int numeroC ;
+           numeroC = Integer.valueOf(cantiqueNumero)+1;
+           Log.d("posi", String.valueOf(numeroC));
+           if (numeroC<=296){
+               Cantique cantique = new Cantique();
+               cantique = openNextCantique(String.valueOf(numeroC));
+               body.setText(cantique.getCorps());
+               cantiqueNumero = String.valueOf(numeroC);
+           }else{
+               Toast.makeText(mContext, "Vous avez atteint le dernier Cantique", Toast.LENGTH_SHORT).show();
+           }
+       });
+
+       btnPred.setOnClickListener(v -> {
+           int numeroC ;
+           numeroC = Integer.valueOf(cantiqueNumero)-1;
+           Log.d("posi", String.valueOf(numeroC));
+           if (numeroC>0){
+               Cantique cantique = new Cantique();
+               cantique = openNextCantique(String.valueOf(numeroC));
+               body.setText(cantique.getCorps());
+               cantiqueNumero = String.valueOf(numeroC);
+           }else{
+               Toast.makeText(mContext, "Vous avez atteint le dernier Cantique", Toast.LENGTH_SHORT).show();
+           }
+       });
 
         myDB = new MyDataBaseHelper(mContext);
         if(!myDB.verifIfExist(cantique)) {
