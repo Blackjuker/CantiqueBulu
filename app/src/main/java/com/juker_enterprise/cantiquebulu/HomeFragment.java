@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -33,7 +34,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     Context mContext  ;
     String titre = null;
     String name=null;
-
+    SearchView searchView;
+    ArrayAdapter<String> adapter;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -59,6 +61,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+            searchView = view.findViewById(R.id.searchListe);
+
 
         int resId ;
         listCantique = new ArrayList();
@@ -96,15 +101,38 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         }
 
         String[] titreCantique = new String[296];
+        String[] titreCantique2 = new String[296];
+
         int i=0;
         for(Cantique can : listCantique) {
             titreCantique[i] = can.getNumeroTitre() + " : " + can.getTitre();
+            titreCantique2[i] = String.valueOf(i+1);
+
+
             i++;
         }
         ListView listView =(ListView) view.findViewById(R.id.listCantique);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext,android.R.layout.simple_list_item_1,titreCantique);
+         adapter = new ArrayAdapter<>(mContext,android.R.layout.simple_list_item_1,titreCantique);
+
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
+
+        //search
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                HomeFragment.this.adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
     }
 
     private  String getCorps(int rawRessource){
