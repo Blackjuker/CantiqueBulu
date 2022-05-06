@@ -113,7 +113,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         }
         ListView listView =(ListView) view.findViewById(R.id.listCantique);
          adapter = new ArrayAdapter<>(mContext,android.R.layout.simple_list_item_1,titreCantique);
-
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 

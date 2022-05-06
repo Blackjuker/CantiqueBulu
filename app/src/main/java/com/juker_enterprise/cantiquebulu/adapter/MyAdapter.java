@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.juker_enterprise.cantiquebulu.R;
@@ -55,6 +57,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.txtNumeroCantique.setText(listFavoris.get(position).getNumero());
         holder.txtTitreCantique.setText(listFavoris.get(position).getNom());
 
+        //Constraint
+        holder.constraintLayout.setOnClickListener(v -> {
+            Toast.makeText(context, listFavoris.get(position).getId(), Toast.LENGTH_SHORT).show();
+        });
+
+
+        // button delete
         holder.btnDeleteCantique.setOnClickListener(v -> {
             myDB = new MyDataBaseHelper(context);
             String numeroString ;
@@ -85,6 +94,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView txtNumeroCantique,txtTitreCantique;
         ImageView btnDeleteCantique;
         private MyAdapter adapter;
+        ConstraintLayout constraintLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +102,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             txtNumeroCantique = itemView.findViewById(R.id.numeroCantique);
             txtTitreCantique = itemView.findViewById(R.id.titreCantique);
             btnDeleteCantique = itemView.findViewById(R.id.btnDelete);
+            constraintLayout = itemView.findViewById(R.id.bodyList);
 
 
         }
