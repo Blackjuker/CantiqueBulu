@@ -28,6 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     List<Favoris> listFavoris;
 
     MyDataBaseHelper myDB;
+    Cantique cantique;
 
 
 
@@ -57,10 +58,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.txtNumeroCantique.setText(listFavoris.get(position).getNumero());
         holder.txtTitreCantique.setText(listFavoris.get(position).getNom());
 
-        //Constraint
-        holder.constraintLayout.setOnClickListener(v -> {
-            Toast.makeText(context, listFavoris.get(position).getId(), Toast.LENGTH_SHORT).show();
-        });
 
 
         // button delete
@@ -81,7 +78,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             holder.adapter.notifyDataSetChanged();
             //notifyDataSetChanged();
         });
+
+
+        //Constraint
+        holder.constraintLayout.setOnClickListener(v -> {
+            // Toast.makeText(context, listFavoris.get(position).getId(), Toast.LENGTH_SHORT).show();
+        });
+
     }
+
+
+
 
     @Override
     public int getItemCount() {
