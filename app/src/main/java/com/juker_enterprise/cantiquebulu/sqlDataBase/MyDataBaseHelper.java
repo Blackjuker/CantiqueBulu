@@ -5,11 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.juker_enterprise.cantiquebulu.beans.Cantique;
+import com.juker_enterprise.cantiquebulu.beans.CodeAndroid;
 import com.juker_enterprise.cantiquebulu.beans.Favoris;
 
 import java.util.ArrayList;
@@ -21,8 +23,11 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
     private Context context;
     private static final String DATABASE_NAME ="Cantique_Bulu.db";
     private static final int  DATABASE_VERSION =1;
+    private static final String  CODE ="_code";
     private static final String TABLE_NAME = "favoris";
+    private static final String TABLE_NAME2 = "CODE";
     private static final String COLUMN_ID = "_id";
+    private static final String ID_ANDROID = "_androidID";
     private static final String COLUMN_NUMERO = "_numero";
     private static final String COLUMN_NOMCANTIQUE="_nomCantique";
     private static final String COLUMN_ISFAVORIS="_isFavoris";
@@ -43,14 +48,38 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
                         COLUMN_NOMCANTIQUE +" TEXT, "+
                         COLUMN_ISFAVORIS +" INTEGER);";
         db.execSQL(query);
+
+        String query2 =
+                "CREATE TABLE "+TABLE_NAME2+
+                        "("+ID_ANDROID+"TEXT,"+
+                        CODE+" INTEGER);";
+        db.execSQL(query2);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME2);
         onCreate(db);
     }
 
+    public void addCode(CodeAndroid codeAndroid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_ID, codeAndroid.getId());
+        cv.put(ID_ANDROID,codeAndroid.getCode());
+
+        long result = db.insert(TABLE_NAME2,null,cv);
+
+        if(result == -1){
+            Log.i("Android_Code","inserted");
+        }else{
+            Log.i("Android_Code","Not inserted");
+        }
+
+    }
 
 
    public void addFavoris(Cantique cantique){
