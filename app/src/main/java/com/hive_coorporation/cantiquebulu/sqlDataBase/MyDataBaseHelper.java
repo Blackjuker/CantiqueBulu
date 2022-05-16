@@ -1,4 +1,4 @@
-package com.juker_enterprise.cantiquebulu.sqlDataBase;
+package com.hive_coorporation.cantiquebulu.sqlDataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,9 +10,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.juker_enterprise.cantiquebulu.beans.Cantique;
-import com.juker_enterprise.cantiquebulu.beans.CodeAndroid;
-import com.juker_enterprise.cantiquebulu.beans.Favoris;
+import com.hive_coorporation.cantiquebulu.beans.Cantique;
+import com.hive_coorporation.cantiquebulu.beans.CodeAndroid;
+import com.hive_coorporation.cantiquebulu.beans.Favoris;
 
 import java.util.ArrayList;
 import java.util.List;

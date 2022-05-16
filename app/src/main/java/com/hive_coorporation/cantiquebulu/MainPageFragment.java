@@ -1,7 +1,6 @@
-package com.juker_enterprise.cantiquebulu;
+package com.hive_coorporation.cantiquebulu;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,8 +14,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.juker_enterprise.cantiquebulu.beans.Cantique;
-import com.juker_enterprise.cantiquebulu.sqlDataBase.MyDataBaseHelper;
+import com.hive_coorporation.cantiquebulu.beans.Cantique;
+import com.hive_coorporation.cantiquebulu.sqlDataBase.MyDataBaseHelper;
 
 import java.io.BufferedReader;
 import java.io.IOException;

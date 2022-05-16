@@ -1,4 +1,4 @@
-package com.juker_enterprise.cantiquebulu.beans;
+package com.hive_coorporation.cantiquebulu.beans;
 
 public class Cantique {
 

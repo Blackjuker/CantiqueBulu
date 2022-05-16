@@ -1,4 +1,4 @@
-package com.juker_enterprise.cantiquebulu;
+package com.hive_coorporation.cantiquebulu;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.juker_enterprise.cantiquebulu.adapter.MyAdapter;
-import com.juker_enterprise.cantiquebulu.beans.Favoris;
-import com.juker_enterprise.cantiquebulu.sqlDataBase.MyDataBaseHelper;
+import com.hive_coorporation.cantiquebulu.adapter.MyAdapter;
+import com.hive_coorporation.cantiquebulu.beans.Favoris;
+import com.hive_coorporation.cantiquebulu.sqlDataBase.MyDataBaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;

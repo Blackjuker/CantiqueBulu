@@ -1,4 +1,4 @@
-package com.juker_enterprise.cantiquebulu;
+package com.hive_coorporation.cantiquebulu;
 
 import android.content.Intent;
 import android.os.Bundle;
