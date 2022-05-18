@@ -17,6 +17,9 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.hive_coorporation.cantiquebulu.beans.Cantique;
 
 import java.io.BufferedReader;
@@ -62,6 +65,12 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
             searchView = view.findViewById(R.id.searchListe);
 
+        
+
+
+        AdView mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         int resId ;
         listCantique = new ArrayList();
@@ -130,6 +139,15 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             }
         });
 
+
+        loadBanner();
+
+    }
+
+    void loadBanner(){
+      /*  mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);*/
     }
 
     private  String getCorps(int rawRessource){
