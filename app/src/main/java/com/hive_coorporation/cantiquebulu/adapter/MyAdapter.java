@@ -33,12 +33,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyAdapter(Context ct, List<Favoris> list){
         context = ct;
         listFavoris = list;
+        setHasStableIds(true);
         Log.e("sss", String.valueOf(list.size()));
     }
 
 
+    @Override
+    public long getItemId(int position) {
+        return  position;
+    }
 
-
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 
     @NonNull
     @Override

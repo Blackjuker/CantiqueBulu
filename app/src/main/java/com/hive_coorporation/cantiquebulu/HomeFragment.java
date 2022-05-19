@@ -144,6 +144,12 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
     void loadBanner(){
       /*  mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
