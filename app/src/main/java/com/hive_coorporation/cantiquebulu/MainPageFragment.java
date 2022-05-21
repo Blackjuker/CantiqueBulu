@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hive_coorporation.cantiquebulu.beans.Cantique;
+import com.hive_coorporation.cantiquebulu.beans.CodeAndroid;
 import com.hive_coorporation.cantiquebulu.sqlDataBase.MyDataBaseHelper;
 
 import java.io.BufferedReader;
@@ -152,6 +154,16 @@ public class MainPageFragment extends Fragment {
         }else {
             btnFavoris.setImageResource(R.drawable.favoris_on);
         }
+
+        /**
+         * Ajout du code unique dans sqlbase
+         */
+        CodeAndroid codeAndroid =new CodeAndroid();
+        codeAndroid.setCode( Settings.Secure.getString(mContext.getContentResolver(),Settings.Secure.ANDROID_ID));
+        codeAndroid.setId("1");
+        myDB.addCode(codeAndroid);
+
+
 
 
         /** creer le bouton pour vérifier si l'objet a un favoris ou pas**/
