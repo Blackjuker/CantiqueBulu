@@ -5,6 +5,7 @@ public class Favoris {
     private int id;
     private String numero;
     private String nom;
+    private String corps;
     private int isFavoris;
 
     public int getId() {
@@ -14,6 +15,7 @@ public class Favoris {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public String getNumero() {
         return numero;
@@ -29,6 +31,14 @@ public class Favoris {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getCorps() {
+        return corps;
+    }
+
+    public void setCorps(String corps) {
+        this.corps = corps;
     }
 
     public int getIsFavoris() {

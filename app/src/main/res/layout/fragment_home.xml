@@ -22,11 +22,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:alpha="0.1"
-        android:layout_width="179dp"
-        android:layout_height="136dp"
+        android:layout_width="209dp"
+        android:layout_height="166dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_centerVertical="true"
+        android:alpha="0.2"
         android:contentDescription="@string/logo_de_fond"
         app:srcCompat="@drawable/logo" />
 <androidx.appcompat.widget.SearchView
@@ -54,9 +54,8 @@
         android:id="@+id/listCantique"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchListe"
-        android:layout_marginTop="20dp"
         android:layout_above="@id/textView"
-        />
+        android:layout_below="@id/searchListe"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>

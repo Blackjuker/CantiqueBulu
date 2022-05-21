@@ -107,6 +107,7 @@ public class InformationFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+
         MobileAds.initialize(mContext, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {

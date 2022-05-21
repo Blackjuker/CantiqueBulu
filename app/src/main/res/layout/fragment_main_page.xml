@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainPageFragment"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainPageFragment">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -22,14 +22,17 @@
             android:src="@drawable/back"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/black_white_gradient"
             android:layout_weight="1"/>
         <ImageButton
+            android:background="@drawable/black_white_gradient"
             android:id="@+id/btn_favoris"
             android:src="@drawable/favoris_off"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <ImageButton
+            android:background="@drawable/black_white_gradient"
             android:src="@drawable/next"
             android:id="@+id/nextCantique"
             android:layout_width="0dp"
@@ -53,8 +56,18 @@
         android:layout_marginLeft="10dp"
         android:gravity="center_horizontal"
         android:textSize="18sp"
-
          />
+
 </ScrollView>
     </RelativeLayout>
+    <ImageView
+
+        android:id="@+id/imageView2"
+        android:alpha="0.15"
+        android:layout_width="209dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:contentDescription="@string/logo_de_fond"
+        app:srcCompat="@drawable/logo" />
 </FrameLayout>

@@ -1,22 +1,32 @@
 package com.hive_coorporation.cantiquebulu.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hive_coorporation.cantiquebulu.MainPageFragment;
 import com.hive_coorporation.cantiquebulu.R;
 import com.hive_coorporation.cantiquebulu.beans.Cantique;
 import com.hive_coorporation.cantiquebulu.beans.Favoris;
 import com.hive_coorporation.cantiquebulu.sqlDataBase.MyDataBaseHelper;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -88,12 +98,64 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         //Constraint
         holder.constraintLayout.setOnClickListener(v -> {
-            // Toast.makeText(context, listFavoris.get(position).getId(), Toast.LENGTH_SHORT).show();
+             Toast.makeText(context, listFavoris.get(position).getNumero(), Toast.LENGTH_SHORT).show();
+            openCantique(listFavoris.get(position).getId());
+
+            AppCompatActivity activity = (AppCompatActivity)v.getContext();
+
+            Fragment cantiqueBody = new MainPageFragment();
+            Bundle args = new Bundle();
+            args.putString("param1",listFavoris.get(position).getNumero());
+            args.putInt("param2",0);
+            cantiqueBody.setArguments(args);
+
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,cantiqueBody).commit();
         });
+
 
     }
 
 
+    public String openCantique(int rawId){
+        String corpCantique = null;
+        // Read the file :open a InputStream on it
+        InputStream inputStream = context.getResources().openRawResource(rawId);
+        try {
+            if (inputStream != null) {
+                // open a reader on the inputStream
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,"Cp1252"));
+
+                // String used to store the lines
+                String str;
+                String titre;
+                StringBuilder buf = new StringBuilder();
+
+                // Read the file
+                int i =0;
+                while ((str = reader.readLine()) != null) {
+
+
+                    if (i==1)
+                        titre = str;
+                    i++;
+
+                    buf.append(str).append("\r\n");
+
+
+                }
+
+                // Close streams
+                reader.close();
+                inputStream.close();
+                corpCantique = buf.toString();
+            }
+        } catch (IOException e) {
+            Toast.makeText(context , "FileNotFoundException", Toast.LENGTH_LONG).show();
+            corpCantique = "FileNotFoundException " + e.getMessage();
+        }
+
+        return corpCantique;
+    }
 
 
     @Override

@@ -5,6 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="221dp"
+        android:layout_height="193dp"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.15"
+        android:contentDescription="@string/logo_de_fond"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recycleViewFavoris"
+        app:layout_constraintTop_toTopOf="@+id/recycleViewFavoris"
+        app:srcCompat="@drawable/logo" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewFavoris"
         android:layout_width="match_parent"

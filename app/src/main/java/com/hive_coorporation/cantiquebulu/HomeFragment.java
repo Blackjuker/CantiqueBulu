@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     String name=null;
     SearchView searchView;
     ArrayAdapter<String> adapter;
+    ListView listView;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -65,13 +66,40 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
             searchView = view.findViewById(R.id.searchListe);
 
-        
+        listView =(ListView) view.findViewById(R.id.listCantique);
 
 
         AdView mAdView = view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+
+        //search
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                HomeFragment.this.adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+
+        loadBanner();
+
+        loadList(view);
+
+    }
+
+
+
+    public void loadList(View view){
         int resId ;
         listCantique = new ArrayList();
 
@@ -92,10 +120,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
                 cantique.setNumero(resId);
                 cantique.setCorps(getCorps(resId));
-               // String t = ;
-              //  byte[] caractereSpecia = titre.getBytes("Cp1252");
-               // String TitreCantique = new String(caractereSpecia);
-               // Toast.makeText(mContext, TitreCantique, Toast.LENGTH_SHORT).show();
+                // String t = ;
+                //  byte[] caractereSpecia = titre.getBytes("Cp1252");
+                // String TitreCantique = new String(caractereSpecia);
+                // Toast.makeText(mContext, TitreCantique, Toast.LENGTH_SHORT).show();
                 cantique.setTitre(titre);
 
 
@@ -118,36 +146,20 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
             i++;
         }
-        ListView listView =(ListView) view.findViewById(R.id.listCantique);
-         adapter = new ArrayAdapter<>(mContext,android.R.layout.simple_list_item_1,titreCantique);
+
+        adapter = new ArrayAdapter<>(mContext,android.R.layout.simple_list_item_1,titreCantique);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
-        //search
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                adapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                HomeFragment.this.adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-
-
-        loadBanner();
-
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
         adapter.notifyDataSetChanged();
+        listView.setAdapter(adapter);
+
     }
 
     void loadBanner(){

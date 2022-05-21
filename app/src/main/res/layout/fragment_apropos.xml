@@ -10,7 +10,7 @@
         android:layout_height="103dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:src="@drawable/potrait"
+        android:src="@drawable/my_photo"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
         app:strokeColor="#D5A10F"
         app:strokeWidth="1dp" />
@@ -50,4 +50,5 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:text="@string/descriptions" />
+
 </RelativeLayout>

@@ -163,6 +163,10 @@ public class MainPageFragment extends Fragment {
                 myDB = new MyDataBaseHelper(mContext);
 
                 if(!myDB.verifIfExist(cantique)) {
+
+                    /**
+                     * ajout des favoris
+                     */
                     myDB.addFavoris(cantique);
                  //   Drawable replacer = getResources().getDrawable(R.drawable.favoris_on);
                     btnFavoris.setImageResource(R.drawable.favoris_on);
