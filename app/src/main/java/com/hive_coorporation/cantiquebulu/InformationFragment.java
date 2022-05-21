@@ -55,7 +55,7 @@ public class InformationFragment extends Fragment {
     private void loadFullScreenAd() {
             AdRequest adRequest = new AdRequest.Builder().build();
 
-            InterstitialAd.load(mContext, "ca-app-pub-3940256099942544/8691691433", adRequest, new InterstitialAdLoadCallback() {
+            InterstitialAd.load(mContext, "ca-app-pub-4003289741676351/2538567611", adRequest, new InterstitialAdLoadCallback() {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);
@@ -107,14 +107,8 @@ public class InformationFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-
-        MobileAds.initialize(mContext, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
-                loadFullScreenAd();
-            }
+        MobileAds.initialize(mContext,initializationStatus -> loadFullScreenAd());
 
 
-        });
     }
 }
